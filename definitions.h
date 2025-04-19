@@ -1,6 +1,15 @@
 #ifndef DEFS_H
 #define DEFS_H
 
+#include "stdlib.h"
+//implement ASSERT macro
+// #define DEBUG
+#ifndef DEBUG
+#define ASSERT(x)
+#else
+#define ASSERT(x) if(!(x)) { printf("Assertion failed: %s, file %s, line %d\n", #x, __FILE__, __LINE__); exit(1); }
+#endif
+
 typedef unsigned long long U64;
 
 #define NAME "Chess Engine 1.0"
@@ -63,6 +72,8 @@ typedef struct {
     int bigPieces[3];
     int majPieces[3];
     int minPieces[3];
+
+    int pieceList[13][10];
 
     S_UNDO history[MAX_GAME_MOVES];
 } S_BOARD;
