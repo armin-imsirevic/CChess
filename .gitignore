@@ -1,0 +1,21 @@
+# Ignore macOS system files
+.DS_Store
+
+# Ignore build files
+*.o
+*.out
+*.exe
+
+# Ignore editor-specific files
+*.swp
+*~
+.vscode/
+
+# Ignore compiled binaries
+CChess
+
+# Ignore logs
+*.log
+
+# Buid file
+main
