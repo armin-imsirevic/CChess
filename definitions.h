@@ -67,4 +67,15 @@ typedef struct {
     S_UNDO history[MAX_GAME_MOVES];
 } S_BOARD;
 
+// Macros
+#define FILE_RANK_TO_SQ(file, rank) ( (21 + (file)) + (rank) * 10 )
+
+// Global variables
+extern int Sq120To64[BOARD_SQUARE_NUMBER];
+extern int Sq64To120[64];
+
+// Global functions
+
+extern void AllInit();
+
 #endif
