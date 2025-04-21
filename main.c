@@ -6,35 +6,19 @@
 int main() {
 
     AllInit();
-
+    int index = 0;
     U64 playBitBoard = 0ULL;
 
-    printf("Initial bitboard:\n");
 
-    playBitBoard |= (1ULL << SQ64(D2));
-    playBitBoard |= (1ULL << SQ64(D3));
-    playBitBoard |= (1ULL << SQ64(D4));
-
-    PrintBitBoard(playBitBoard);
-
-    int count = CNT(playBitBoard);
-
-    printf("Count of bits: %d\n", count);
-
-    int pop = POP(&playBitBoard);
-    printf("Popped bit: %d\n", pop);
-    printf("Bitboard after pop:\n");
-    PrintBitBoard(playBitBoard);
-    printf("Count of bits: %d\n", CNT(playBitBoard));
-
-    while (playBitBoard) {
-        pop = POP(&playBitBoard);
-        printf("Popped bit: %d\n", pop);
-        printf("Bitboard after pop:\n");
-        PrintBitBoard(playBitBoard);
-        printf("Count of bits: %d\n", CNT(playBitBoard));
+    for (index = 0; index < 64; index++) {
+        printf("index: %d\n", index);
+        PrintBitBoard(ClearMask[index]);
+        printf("\n");
     }
-    printf("Final bitboard:\n");
+
+    SETBIT(playBitBoard, 30);
+    PrintBitBoard(playBitBoard);
+    printf("\n");
 
     return 0;
 }
