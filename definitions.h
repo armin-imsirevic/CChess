@@ -81,6 +81,8 @@ typedef struct {
 // Macros
 #define FILE_RANK_TO_SQ(file, rank) ( (21 + (file)) + (rank) * 10 )
 #define SQ64(sq120) (Sq120To64[(sq120)])
+#define POP(b) PopBit(b)
+#define CNT(b) CountBits(b)
 
 // Global variables
 extern int Sq120To64[BOARD_SQUARE_NUMBER];
@@ -90,5 +92,7 @@ extern int Sq64To120[64];
 extern void AllInit();
 
 extern void PrintBitBoard(U64 bitBoard);
+extern int CountBits(U64 b);
+extern int PopBit(U64 *bb);
 
 #endif

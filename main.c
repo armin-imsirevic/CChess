@@ -10,15 +10,31 @@ int main() {
     U64 playBitBoard = 0ULL;
 
     printf("Initial bitboard:\n");
-    PrintBitBoard(playBitBoard);
 
     playBitBoard |= (1ULL << SQ64(D2));
-    printf("After placing a piece on D2:\n");
+    playBitBoard |= (1ULL << SQ64(D3));
+    playBitBoard |= (1ULL << SQ64(D4));
+
     PrintBitBoard(playBitBoard);
 
-    playBitBoard |= (1ULL << SQ64(G2));
-    printf("After placing a piece on G2:\n");
+    int count = CNT(playBitBoard);
+
+    printf("Count of bits: %d\n", count);
+
+    int pop = POP(&playBitBoard);
+    printf("Popped bit: %d\n", pop);
+    printf("Bitboard after pop:\n");
     PrintBitBoard(playBitBoard);
+    printf("Count of bits: %d\n", CNT(playBitBoard));
+
+    while (playBitBoard) {
+        pop = POP(&playBitBoard);
+        printf("Popped bit: %d\n", pop);
+        printf("Bitboard after pop:\n");
+        PrintBitBoard(playBitBoard);
+        printf("Count of bits: %d\n", CNT(playBitBoard));
+    }
+    printf("Final bitboard:\n");
 
     return 0;
 }
