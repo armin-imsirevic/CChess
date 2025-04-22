@@ -17,6 +17,8 @@ typedef unsigned long long U64;
 
 #define MAX_GAME_MOVES 2048
 
+#define START_FEN "rnbqkb1r/pppppppp/8/8/8/8/PPPPPPPP/RNBQKB1R w KQkq - 0 1"
+
 enum { EMPTY, whitePawn, whiteKnight, whiteBishop, whiteRook, whiteQueen, whiteKing,
     blackPawn, blackKnight, blackBishop, blackRook, blackQueen, blackKing };
 enum { FILE_A, FILE_B, FILE_C, FILE_D, FILE_E, FILE_F, FILE_G, FILE_H,
