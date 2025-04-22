@@ -4,10 +4,10 @@
 #include <stdlib.h>
 
 #define RAND_64 \
-    ((U64) rand() + \
-    ((U64) rand() << 15) + \
-    ((U64) rand() << 30) + \
-    ((U64) rand() << 45) + \
+    ((U64) rand() | \
+    ((U64) rand() << 15) | \
+    ((U64) rand() << 30) | \
+    ((U64) rand() << 45) | \
     (((U64) rand() & 0xF) << 60))
 
 int Sq120To64[BOARD_SQUARE_NUMBER];

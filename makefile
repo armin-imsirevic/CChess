@@ -1,2 +1,2 @@
 all:
-	clang main.c -o main
+	clang main.c init.c bitboards.c hashkeys.c board.c data.c -o main

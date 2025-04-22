@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "definitions.h"
 
-void ParseFen(char *fen, S_BOARD *pos) {
+int ParseFen(char *fen, S_BOARD *pos) {
     ASSERT(fen != NULL);
     ASSERT(pos != NULL);
     int rank = RANK_8;
@@ -132,3 +132,33 @@ void ResetBoard(S_BOARD *pos) {
     pos->posKey = 0ULL;
 }
 
+void PrintBoard(const S_BOARD *pos) {
+    int sq, file, rank, piece;
+
+    printf("\nGame Board:\n");
+
+    for (rank = RANK_8; rank >= RANK_1; rank--) {
+        printf("%d  ", rank + 1);
+        for (file = FILE_A; file <= FILE_H; file++) {
+            sq = FILE_RANK_TO_SQ(file, rank);
+            piece = pos->pieces[sq];
+            printf("%3c ", PieceChar[piece]);
+        }
+        printf("\n");
+    }
+
+    printf("\n   ");
+    for (file = FILE_A; file <= FILE_H; file++) {
+        printf("%3c ", 'a' + file);
+    }
+    printf("\n");
+    printf("side:%c\n", SideChar[pos->side]);
+    printf("enPas:%d\n", pos->enPas);
+    printf("castle:%c%c%c%c\n",
+        pos->castlePerm & WHITE_KINGSIDE_CASTLE ? 'K' : '-',
+        pos->castlePerm & WHITE_QUEENSIDE_CASTLE ? 'Q' : '-',
+        pos->castlePerm & BLACK_KINGSIDE_CASTLE ? 'k' : '-',
+        pos->castlePerm & BLACK_QUEENSIDE_CASTLE ? 'q' : '-');
+    printf("PosKey:%llX\n", pos->posKey);
+    
+}
