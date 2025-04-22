@@ -91,6 +91,9 @@ extern int Sq120To64[BOARD_SQUARE_NUMBER];
 extern int Sq64To120[64];
 extern U64 SetMask[64];
 extern U64 ClearMask[64];
+extern U64 PieceKeys[13][120];
+extern U64 SideKey;
+extern U64 CastleKeys[16];
 
 // Global functions
 extern void AllInit();
@@ -98,5 +101,7 @@ extern void AllInit();
 extern void PrintBitBoard(U64 bitBoard);
 extern int CountBits(U64 b);
 extern int PopBit(U64 *bb);
+
+extern U64 GeneratePosKey(const S_BOARD *pos);
 
 #endif
