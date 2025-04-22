@@ -33,7 +33,7 @@ enum {
     A5 = 61, B5 = 62, C5 = 63, D5 = 64, E5 = 65, F5 = 66, G5 = 67, H5 = 68,
     A6 = 71, B6 = 72, C6 = 73, D6 = 74, E6 = 75, F6 = 76, G6 = 77, H6 = 78,
     A7 = 81, B7 = 82, C7 = 83, D7 = 84, E7 = 85, F7 = 86, G7 = 87, H7 = 88,
-    A8 = 91, B8 = 92, C8 = 93, D8 = 94, E8 = 95, F8 = 96, G8 = 97, H8 = 98, NO_SQ
+    A8 = 91, B8 = 92, C8 = 93, D8 = 94, E8 = 95, F8 = 96, G8 = 97, H8 = 98, NO_SQ, OFFBOARD
 };
 
 enum {
@@ -81,6 +81,7 @@ typedef struct {
 // Macros
 #define FILE_RANK_TO_SQ(file, rank) ( (21 + (file)) + (rank) * 10 )
 #define SQ64(sq120) (Sq120To64[(sq120)])
+#define SQ120(sq64) (Sq64To120[(sq64)])
 #define POP(b) PopBit(b)
 #define CNT(b) CountBits(b)
 #define CLRBIT(bb, sq) (bb &= ClearMask[sq])
@@ -103,5 +104,6 @@ extern int CountBits(U64 b);
 extern int PopBit(U64 *bb);
 
 extern U64 GeneratePosKey(const S_BOARD *pos);
+extern void ResetBoard(S_BOARD *pos);
 
 #endif
