@@ -109,6 +109,9 @@ extern int PieceMin[13];
 extern int PieceVal[13];
 extern int PieceCol[13];
 
+extern int FilesBrd[BOARD_SQUARE_NUMBER];
+extern int RanksBrd[BOARD_SQUARE_NUMBER];
+
 // Global functions
 extern void AllInit();
 
