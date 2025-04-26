@@ -10,14 +10,12 @@ int main() {
 
     S_BOARD board[1];
 
-    ParseFen(START_FEN, board);
-    PrintBoard(board);
-
     ParseFen(FEN1, board);
     PrintBoard(board);
+    board->posKey ^= SideKey;
+    ASSERT(CheckBoard(board));
 
-    ParseFen(FEN2, board);
-    PrintBoard(board);
+    
 
     return 0;
 }

@@ -2,8 +2,9 @@
 #define DEFS_H
 
 #include "stdlib.h"
+#include "stdio.h"
 
-// #define DEBUG
+#define DEBUG
 #ifndef DEBUG
 #define ASSERT(x)
 #else
@@ -17,7 +18,7 @@ typedef unsigned long long U64;
 
 #define MAX_GAME_MOVES 2048
 
-#define START_FEN "rnbqkb1r/pppppppp/8/8/8/8/PPPPPPPP/RNBQKB1R w KQkq - 0 1"
+#define START_FEN "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
 
 enum { EMPTY, whitePawn, whiteKnight, whiteBishop, whiteRook, whiteQueen, whiteKing,
     blackPawn, blackKnight, blackBishop, blackRook, blackQueen, blackKing };
@@ -124,5 +125,6 @@ extern void ResetBoard(S_BOARD *pos);
 extern int ParseFen(char *fen, S_BOARD *pos);
 extern void PrintBoard(const S_BOARD *pos);
 extern int UpdateListsMaterial(S_BOARD *pos);
+extern int CheckBoard(const S_BOARD *pos);
 
 #endif
