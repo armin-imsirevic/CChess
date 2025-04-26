@@ -1,6 +1,38 @@
 #include <stdio.h>
 #include "definitions.h"
 
+int UpdateListsMaterial(S_BOARD *pos) {
+    int piece, sq, index, color; 
+
+    for (index = 0; index < BOARD_SQUARE_NUMBER; ++index) {
+        sq = index;
+        piece = pos->pieces[index];
+        if (piece != OFFBOARD && piece != EMPTY) {
+            color = PieceCol[piece];
+
+            if (PieceBig[piece] == TRUE) {
+                pos->bigPieces[color]++;
+            }
+            if (PieceMaj[piece] == TRUE) {
+                pos->majPieces[color]++;
+            }
+            if (PieceMin[piece] == TRUE) {
+                pos->minPieces[color]++;
+            }
+
+            pos->material[color] += PieceVal[piece];
+
+            pos->pieceList[piece][pos->piecesNum[piece]] = sq;
+            pos->piecesNum[piece]++;
+
+            if (piece == whiteKing) pos->KingSquares[WHITE] = sq;
+            if (piece == blackKing) pos->KingSquares[BLACK] = sq;
+        }
+    }
+
+    return 0;
+}
+
 int ParseFen(char *fen, S_BOARD *pos) {
     ASSERT(fen != NULL);
     ASSERT(pos != NULL);

@@ -71,9 +71,10 @@ typedef struct {
     U64 posKey;
     
     int piecesNum[13];
-    int bigPieces[3];
-    int majPieces[3];
-    int minPieces[3];
+    int bigPieces[2];
+    int majPieces[2];
+    int minPieces[2];
+    int material[2];
 
     int pieceList[13][10];
 
@@ -102,6 +103,12 @@ extern char SideChar[];
 extern char RankChar[];
 extern char FileChar[];
 
+extern int PieceBig[13];
+extern int PieceMaj[13];
+extern int PieceMin[13];
+extern int PieceVal[13];
+extern int PieceCol[13];
+
 // Global functions
 extern void AllInit();
 
@@ -113,5 +120,6 @@ extern U64 GeneratePosKey(const S_BOARD *pos);
 extern void ResetBoard(S_BOARD *pos);
 extern int ParseFen(char *fen, S_BOARD *pos);
 extern void PrintBoard(const S_BOARD *pos);
+extern int UpdateListsMaterial(S_BOARD *pos);
 
 #endif
