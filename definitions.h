@@ -83,13 +83,18 @@ typedef struct {
 } S_BOARD;
 
 // Macros
-#define FILE_RANK_TO_SQ(file, rank) ( (21 + (file)) + (rank) * 10 )
+#define FR2SQ(f,r) ( (21 + (f) ) + ( (r) * 10 ) )
 #define SQ64(sq120) (Sq120To64[(sq120)])
 #define SQ120(sq64) (Sq64To120[(sq64)])
 #define POP(b) PopBit(b)
 #define CNT(b) CountBits(b)
 #define CLRBIT(bb, sq) (bb &= ClearMask[sq])
 #define SETBIT(bb, sq) (bb |= SetMask[sq])
+
+#define IsBQ(p) (PieceBishopQueen[p])
+#define IsRQ(p) (PieceRookQueen[p])
+#define IsKn(p) (PieceKnight[p])
+#define IsKi(p) (PieceKing[p])
 
 // Global variables
 extern int Sq120To64[BOARD_SQUARE_NUMBER];
@@ -113,6 +118,11 @@ extern int PieceCol[13];
 extern int FilesBrd[BOARD_SQUARE_NUMBER];
 extern int RanksBrd[BOARD_SQUARE_NUMBER];
 
+extern int PieceKnight[13];
+extern int PieceKing[13];
+extern int PieceRookQueen[13];
+extern int PieceBishopQueen[13];
+
 // Global functions
 extern void AllInit();
 
@@ -124,7 +134,10 @@ extern U64 GeneratePosKey(const S_BOARD *pos);
 extern void ResetBoard(S_BOARD *pos);
 extern int ParseFen(char *fen, S_BOARD *pos);
 extern void PrintBoard(const S_BOARD *pos);
-extern int UpdateListsMaterial(S_BOARD *pos);
+extern void UpdateListsMaterial(S_BOARD *pos);
 extern int CheckBoard(const S_BOARD *pos);
+
+//attack.c
+extern int SqAttacked(const int sq, const int side, const S_BOARD *pos);
 
 #endif

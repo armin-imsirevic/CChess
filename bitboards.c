@@ -32,7 +32,7 @@ void PrintBitBoard(U64 bitBoard) {
     printf("\n");
     for(rank = RANK_8; rank >= RANK_1; --rank) {
         for(file = FILE_A; file <= FILE_H; ++file) {
-            square = FILE_RANK_TO_SQ(file, rank); // Convert to 120
+            square = FR2SQ(file, rank); // Convert to 120
             square64 = SQ64(square); // Convert to 64
             if (bitBoard & (shiftMe << square64)) {
                 printf("X");
