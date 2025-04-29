@@ -35,10 +35,10 @@ int main() {
 
     int move = 0;
 
-    int from = 6;
-    int to = 12;
+    int from = A2;
+    int to = H7;
     int captured = whiteRook;
-    int promoted = blackRook;
+    int promoted = blackKing;
 
     move = ( (from) | (to << 7) | (captured << 14) | (promoted << 20) );
 
@@ -51,9 +51,14 @@ int main() {
         CAPTURED(move),
         PROMOTED(move));
 
-    move |= MFLAGPS;
+    printf("Algebraic from: %s to: %s move: %s\n",
+        PrintSquare(from),
+        PrintSquare(to),
+        PrintMove(move));
+    
+    // move |= MFLAGPS;
 
-    printf("is PST:%s\n", (move & MFLAGPS) ? "YES" : "NO");
+    // printf("is PST:%s\n", (move & MFLAGPS) ? "YES" : "NO");
     
     return 0;
 }
