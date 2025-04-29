@@ -51,6 +51,11 @@ enum {
 
 typedef struct {
     int move;
+    int score;
+} S_MOVE;
+
+typedef struct {
+    int move;
     int castlePerm;
     int enPas;
     U64 posKey;
@@ -81,6 +86,20 @@ typedef struct {
 
     S_UNDO history[MAX_GAME_MOVES];
 } S_BOARD;
+
+#define FROMSQ(m) ((m) & 0x7F)
+#define TOSQ(m) (((m)>>7) & 0x7F)
+#define CAPTURED(m) (((m)>>14) & 0xF)
+#define PROMOTED(m) (((m)>>20) & 0xF)
+
+#define MFLAGEP 0x40000
+#define MFLAGPS 0x80000
+#define MFLAGCA 0x1000000
+
+#define MFLAGCAP 0x7C000
+#define MFLAGPROM 0xF00000
+
+#define NOMOVE 0
 
 // Macros
 #define FR2SQ(f,r) ( (21 + (f) ) + ( (r) * 10 ) )
