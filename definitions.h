@@ -17,6 +17,7 @@ typedef unsigned long long U64;
 #define BOARD_SQUARE_NUMBER 120
 
 #define MAX_GAME_MOVES 2048
+#define MAX_POSITION_MOVES 256
 
 #define START_FEN "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
 
@@ -86,6 +87,11 @@ typedef struct {
 
     S_UNDO history[MAX_GAME_MOVES];
 } S_BOARD;
+
+typedef struct {
+    S_MOVE moves[MAX_POSITION_MOVES];
+    int count;
+} S_MOVELIST;
 
 #define FROMSQ(m) ((m) & 0x7F)
 #define TOSQ(m) (((m)>>7) & 0x7F)
@@ -157,6 +163,16 @@ extern void UpdateListsMaterial(S_BOARD *pos);
 extern int CheckBoard(const S_BOARD *pos);
 extern char *PrintSquare(const int sq);
 extern char *PrintMove(const int move);
+extern int SqOnBoard(const int sq);
+extern int SideValid(const int side);
+extern int PieceValid(const int piece);
+extern int PieceValidEmpty(const int piece);
+extern int FileRankValid(const int fr);
+extern void PrintMoveList(const S_MOVELIST *list);
+extern void GenerateAllMoves(const S_BOARD *pos, S_MOVELIST *list);
+extern void AddWhitePawnMove(const S_BOARD *pos, const int from, const int to, const int captured, S_MOVELIST *list);
+extern void AddWhitePawnCapMove(const S_BOARD *pos, const int from, const int to, const int captured, S_MOVELIST *list);
+
 
 //attack.c
 extern int SqAttacked(const int sq, const int side, const S_BOARD *pos);
